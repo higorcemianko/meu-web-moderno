@@ -25,7 +25,7 @@
         height: 100%;
         text-align: right;
         font-size: 14px;
-        width: 20%;
+        width: 0%;
     }
 </style>
 
@@ -37,6 +37,14 @@
     function pauseVideo(video){
         video.pause()
     }
+    const divProgresso = document.querySelector('[wm-progresso]')    
+    document.getElementById(divProgresso.getAttribute("wm-progresso")).addEventListener("timeupdate", function(){
+            progresso = divProgresso.children[0]
+            percentualProgresso = this.currentTime / this.duration * 100
+            progresso.style.width = percentualProgresso + "%"
+            progresso.innerHTML = `${percentualProgresso.toFixed(1)}%`
+    })
+
 
     const botaoPlay = document.querySelector('[wm-play]')
     const botaoPause = document.querySelector('[wm-pause]')
